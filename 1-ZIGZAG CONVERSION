@@ -1,0 +1,22 @@
+def convert(s, numRows):
+    if numRows == 1 or numRows >= len(s):
+        return s
+
+    result = [''] * numRows
+    row, step = 0, 1
+
+    for char in s:
+        result[row] += char
+        if row == 0:
+            step = 1
+        elif row == numRows - 1:
+            step = -1
+        row += step
+
+    return ''.join(result)
+
+# Example usage
+input_string = input("Enter a string: ")
+numRows = int(input("Enter the number of rows: "))
+output = convert(input_string, numRows)
+print(f"Zigzag conversion: {output}")

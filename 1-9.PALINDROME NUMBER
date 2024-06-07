@@ -1,0 +1,24 @@
+def is_palindrome(x):
+    # Convert negative numbers to positive for comparison
+    if x < 0:
+        return False
+
+    original_x = x
+    reversed_x = 0
+
+    while x:
+        digit = x % 10
+        reversed_x = reversed_x * 10 + digit
+        x //= 10
+
+    return original_x == reversed_x
+
+# Example usage
+x1 = 121
+print(f"Input: {x1}, Output: {is_palindrome(x1)}")
+
+x2 = -121
+print(f"Input: {x2}, Output: {is_palindrome(x2)}")
+
+x3 = 10
+print(f"Input: {x3}, Output: {is_palindrome(x3)}")

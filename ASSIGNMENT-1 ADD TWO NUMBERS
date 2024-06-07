@@ -1,0 +1,42 @@
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def add_linked_lists(l1, l2):
+    dummy_head = ListNode()
+    current = dummy_head
+    carry = 0
+
+    while l1 or l2 or carry:
+        sum_val = carry
+        if l1:
+            sum_val += l1.val
+            l1 = l1.next
+        if l2:
+            sum_val += l2.val
+            l2 = l2.next
+
+        carry, digit = divmod(sum_val, 10)
+        current.next = ListNode(digit)
+        current = current.next
+
+    return dummy_head.next
+
+# Example usage
+def create_linked_list(nums):
+    dummy_head = ListNode()
+    current = dummy_head
+    for num in nums:
+        current.next = ListNode(num)
+        current = current.next
+    return dummy_head.next
+
+# Test cases
+l1 = create_linked_list([2, 4, 3])
+l2 = create_linked_list([5, 6, 4])
+result = add_linked_lists(l1, l2)
+while result:
+    print(result.val, end=" -> ")
+    result = result.next
+print("None")  # To indicate the end of the linked list

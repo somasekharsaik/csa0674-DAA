@@ -1,0 +1,21 @@
+def find_median_sorted_arrays(nums1, nums2):
+    merged = sorted(nums1 + nums2)
+    total_length = len(merged)
+
+    if total_length % 2 == 0:
+        mid1 = merged[total_length // 2 - 1]
+        mid2 = merged[total_length // 2]
+        return (mid1 + mid2) / 2
+    else:
+        return merged[total_length // 2]
+
+# Example usage
+nums1 = [1, 3]
+nums2 = [2]
+result1 = find_median_sorted_arrays(nums1, nums2)
+print(f"Example 1: Median = {result1:.5f}")
+
+nums1 = [1, 2]
+nums2 = [3, 4]
+result2 = find_median_sorted_arrays(nums1, nums2)
+print(f"Example 2: Median = {result2:.5f}")

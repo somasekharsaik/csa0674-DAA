@@ -1,0 +1,26 @@
+def three_sum_closest(nums, target):
+    nums.sort()  # Sort the array to make it easier to find triplets
+    n = len(nums)
+    closest_sum = float('inf')
+
+    for i in range(n - 2):
+        left, right = i + 1, n - 1
+
+        while left < right:
+            total = nums[i] + nums[left] + nums[right]
+            if abs(total - target) < abs(closest_sum - target):
+                closest_sum = total
+
+            if total < target:
+                left += 1
+            elif total > target:
+                right -= 1
+            else:
+                return target  # Exact match found
+
+    return closest_sum
+
+# Example usage:
+nums1 = [-1, 2, 1, -4]
+target1 = 1
+print("Example 1 Output:", three_sum_closest

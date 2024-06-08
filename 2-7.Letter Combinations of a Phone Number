@@ -1,0 +1,38 @@
+def letter_combinations(digits):
+    if not digits:
+        return []
+
+    # Define the mapping of digits to letters
+    digit_to_letters = {
+        '2': 'abc',
+        '3': 'def',
+        '4': 'ghi',
+        '5': 'jkl',
+        '6': 'mno',
+        '7': 'pqrs',
+        '8': 'tuv',
+        '9': 'wxyz'
+    }
+
+    def backtrack(combination, next_digits):
+        if not next_digits:
+            result.append(combination)
+            return
+
+        current_digit = next_digits[0]
+        for letter in digit_to_letters[current_digit]:
+            backtrack(combination + letter, next_digits[1:])
+
+    result = []
+    backtrack("", digits)
+    return result
+
+# Example usage:
+digits1 = "23"
+print("Example 1 Output:", letter_combinations(digits1))  # Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
+
+digits2 = ""
+print("Example 2 Output:", letter_combinations(digits2))  # Output: []
+
+digits3 = "2"
+print("Example 3 Output:", letter_combinations(digits3))  # Output: ["a", "b", "c"]

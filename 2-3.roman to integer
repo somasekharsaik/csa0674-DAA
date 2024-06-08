@@ -1,0 +1,33 @@
+def roman_to_int(s):
+    roman_values = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000
+    }
+
+    total = 0
+    prev_value = 0
+
+    for char in s:
+        value = roman_values[char]
+        if value > prev_value:
+            total += value - 2 * prev_value
+        else:
+            total += value
+        prev_value = value
+
+    return total
+
+# Example usage:
+roman1 = "III"
+print("Example 1 Output:", roman_to_int(roman1))  # Output: 3
+
+roman2 = "LVIII"
+print("Example 2 Output:", roman_to_int(roman2))  # Output: 58
+
+roman3 = "MCMXCIV"
+print("Example 3 Output:", roman_to_int(roman3))  # Output: 1994

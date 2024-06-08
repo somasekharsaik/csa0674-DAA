@@ -1,0 +1,37 @@
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def remove_nth_from_end(head, n):
+    # Create a dummy node to handle edge cases (e.g., removing the first node)
+    dummy = ListNode(0)
+    dummy.next = head
+    slow, fast = dummy, dummy
+
+    # Move the fast pointer n steps ahead
+    for _ in range(n + 1):
+        fast = fast.next
+
+    # Move both pointers until fast reaches the end
+    while fast:
+        slow = slow.next
+        fast = fast.next
+
+    # Remove the nth node
+    slow.next = slow.next.next
+
+    return dummy.next
+
+# Example usage:
+# Create a linked list: 1 -> 2 -> 3 -> 4 -> 5
+head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
+n = 2
+new_head = remove_nth_from_end(head, n)
+
+# Print the modified linked list
+result = []
+while new_head:
+    result.append(new_head.val)
+    new_head = new_head.next
+print(result)  # Output: [1, 2, 3, 5]
